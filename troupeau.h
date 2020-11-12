@@ -6,3 +6,17 @@ void afficher_troupeaux(Troupeau * p_troupeau, int * p_index);
 int Nombre_brebis(Troupeau * p_troupeau, int * p_index);
 int Nombre_veaux(Troupeau * p_troupeau, int * p_index);
 
+
+typedef struct{
+int jour;
+int mois;
+int annee;
+}Date;
+
+typedef struct{
+int identifiant;
+char type[30];
+char sexe[30];
+Date date;
+}Troupeau;
+
