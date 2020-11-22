@@ -21,8 +21,8 @@ void modifier_animal(Troupeau troupeau);
 void supprimer_animal(char * identifiant);
 void chercher_animal(char * identifiant);
 void afficher_troupeaux();
-int Nombre_brebis();
-int Nombre_veaux();
+int nombre_brebis();
+int nombre_veaux();
 
 
 #endif
