@@ -12,7 +12,7 @@ void ajouter_capteur(Capteur C);
 void supprimer_capteur(char *id);
 void chercher_capteur(char *id);
 void modifier_capteur(char *id,Capteur tempo);
-int changer_etat_capteur(char *id ,int etat);
+void changer_etat_capteur(char *id ,int etat);
 void afficher_capteurs();
 #endif
 

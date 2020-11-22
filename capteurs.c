@@ -81,11 +81,11 @@ remove("capteurs.txt");
 rename("anciens.txt","capteurs.txt");
 }
 //fonction changer etat
-int changer_etat_capteur(char *id ,int etat)
+void changer_etat_capteur(char *id ,int etat)
 {
 FILE *f=NULL;
 FILE *f1=NULL;
-Capteur C,tempo;
+Capteur C;
 //printf + scanf de : marque , position, type, etat dans tempo
 
 f=fopen("capteurs.txt","r");
