@@ -1,12 +1,5 @@
-int lire_fichier(char filename[],troupeau);
-void ajouter_animal(Troupeau * p_troupeau, int * p_index);
-void modifier_animal(Troupeau * p_troupeau, int * p_index);
-void supprimer_animal(Troupeau * p_troupeau, int * p_index);
-void chercher_animal(Troupeau * p_troupeau, int * p_index);
-void afficher_troupeaux(Troupeau * p_troupeau, int * p_index);
-int Nombre_brebis(Troupeau * p_troupeau, int * p_index);
-int Nombre_veaux(Troupeau * p_troupeau, int * p_index);
-
+#ifndef TROUPEAU_H_
+#define TROUPEAU_H_
 
 typedef struct{
 int jour;
@@ -15,10 +8,22 @@ int annee;
 }Date;
 
 typedef struct{
-int identifiant;
+char identifiant[30];
 char type[30];
 char sexe[30];
 int etat; // 1 bonne santé 0 malade
 Date date;
 }Troupeau;
+
+
+void ajouter_animal(Troupeau troupeau);
+void modifier_animal(Troupeau troupeau);
+void supprimer_animal(char * identifiant);
+void chercher_animal(char * identifiant);
+void afficher_troupeaux();
+int Nombre_brebis();
+int Nombre_veaux();
+
+
+#endif
 
