@@ -21,7 +21,7 @@ FILE*f1=fopen("ancien_troupeau.txt","w+");
 Troupeau troupeau;
 
 while(fscanf(f,"%s %s %s %d %d %d %d\n",troupeau.identifiant,troupeau.type,troupeau.sexe,&troupeau.etat,&troupeau.date.jour,&troupeau.date.mois,&troupeau.date.annee)!=EOF){
-if(strcmp(troupeau.identifiant,nouveau.identifiant)!=0)
+if(strcmp(troupeau.identifiant,nouveau.identifiant)==0)
 {
 fprintf(f1,"%s %s %d %d %d %d\n",nouveau.type,nouveau.sexe,nouveau.etat,nouveau.date.jour,nouveau.date.mois,nouveau.date.annee);
 }
@@ -41,7 +41,7 @@ Troupeau troupeau;
 
 f1=fopen("ancien_troupeau.txt","w+");
 while(fscanf(f,"%s %s %s %d %d %d %d\n",troupeau.identifiant,troupeau.type,troupeau.sexe,&troupeau.etat,&troupeau.date.jour,&troupeau.date.mois,&troupeau.date.annee)!=EOF){
-if(strcmp(identifiant,troupeau.identifiant)!=0){
+if(strcmp(identifiant,troupeau.identifiant)==0){
 fprintf(f1,"%s %s %s %d %d %d %d\n",troupeau.identifiant,troupeau.type,troupeau.sexe,troupeau.etat,troupeau.date.jour,troupeau.date.mois,troupeau.date.annee);
 }}
 fclose(f);
@@ -88,7 +88,7 @@ i+=1;
 fclose(f);
 }
 
-int Nombre_brebis(){
+int nombre_brebis(){
 FILE*f=fopen("troupeau.txt","r");
 Troupeau troupeau;
 int nombre_brebis=0;
@@ -103,7 +103,7 @@ return nombre_brebis;
 }
 
 
-int Nombre_veaux(){
+int nombre_veaux(){
 FILE*f=fopen("troupeau.txt","r");
 Troupeau troupeau;
 int nombre_veaux=0;
