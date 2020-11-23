@@ -9,7 +9,7 @@
 void ajoutClient(client C)
 {
 FILE *f=NULL;
-f=fopen("clients.txt","a+");
+f=fopen("clients.txt","a");
 fprintf(f,"%s %s %s %s %s \n", C.id, C.nom, C.prenom, C.tel, C.mail);
 fclose(f);
 }
@@ -22,7 +22,7 @@ FILE*f=NULL;
 FILE*f1=NULL;
 client C ;
 f=fopen("clients.txt","r");
-f1=fopen("nouveau.txt","w+");
+f1=fopen("nouveau.txt","w");
 while(fscanf(f,"%s %s %s %s %s \n", C.id, C.nom, C.prenom, C.tel, C.mail)!=EOF)
 {
 if(strcmp(idSupp,C.id)!=0)
@@ -37,18 +37,14 @@ rename("nouveau.txt","clients.txt");
 //fonction chercher            A ETUDIER
 
 
-void chercherClient(char * idChercher)
+client chercherClient(char * idChercher)
 {
 FILE*f=fopen("clients.txt","r");
 client C;
 while(fscanf(f,"%s %s %s %s %s\n", C.id, C.nom, C.prenom, C.tel, C.mail)!=EOF)
 {
 if(strcmp(idChercher,C.id)==0){
-printf("L'identfiant est %s \n",C.id);
-printf("Le nom est %s \n",C.nom);
-printf("Le prenom est %s \n",C.prenom);
-printf("Le sexe est %s \n",C.tel);
-printf("L'email est %s \n", C.mail);
+return C;
 }
 }
 fclose(f);
