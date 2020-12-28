@@ -88,7 +88,7 @@ void
 on_ButtonQuit_clicked                  (GtkWidget *windowcap,
                                         gpointer         user_data)
 {
-/*GtkWidget *p, *p1, *p2, *p3;*/
+GtkWidget *p, *p1, *p2, *p3;
 GtkWidget *windowdash, *windowcapteur;
 windowcapteur=lookup_widget(windowcap,"WindowGestiondescapteurs");
 windowdash= create_WindowDashboard();
