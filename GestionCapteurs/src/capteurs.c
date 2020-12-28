@@ -166,13 +166,13 @@ Capteur C;
 f=fopen("capteurs.txt","r");
 while(fscanf(f,"%s %s %s %s %d %d\n",C.identifiant,C.marque,C.position,C.type,&C.valeur,&C.etat)!=EOF)
 {
-if(strcmp(C.identifiant,id)==0){
-return 1;
+	if(strcmp(C.identifiant,id)==0)
+	return 1;
 }
 fclose(f);
 return 0;
 }
-}
+
 
 
 

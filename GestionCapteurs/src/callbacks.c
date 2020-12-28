@@ -173,30 +173,31 @@ C.etat=gtk_spin_button_get_value_as_int(GTK_SPIN_BUTTON(entryetat));
 
 
 if(gtk_widget_get_visible(id)==FALSE && gtk_widget_get_visible(mar)==FALSE && gtk_widget_get_visible(pos)==FALSE && gtk_widget_get_visible(verif)==FALSE){
-if(capteur_exist(C.identifiant)==1){
-gtk_widget_set_visible(success,FALSE);
-gtk_widget_show(fail);
-}else{
-ajouter_capteur(C);
-//mise à jour du treeview
-p=lookup_widget(windowcap,"treeview1");
-Capteurtree(p,"capteurs.txt");
-p1=lookup_widget(windowcap,"TreeViewAffichageAlarmante");
-Alarmantetree(p1,"alarmantes.txt");
-p2=lookup_widget(windowcap,"treeview2");
-ChercherCapteur(p2,"capteurs.txt");
-p3=lookup_widget(windowcap,"treeview3");
-Defectueuxtree(p3,"defectueux.txt");
-//bien ajouté 
-gtk_widget_set_visible(fail,FALSE);
-gtk_widget_show(success);
-//vider les champs après ajout
-gtk_entry_set_text(GTK_ENTRY(entryid),"");
-gtk_entry_set_text(GTK_ENTRY(entrymar),"");
-gtk_entry_set_text(GTK_ENTRY(entrypos),"");
-gtk_spin_button_set_value(GTK_SPIN_BUTTON(entryetat),1);
-gtk_spin_button_set_value(GTK_SPIN_BUTTON(entryval),0);
-}
+	if(capteur_exist(C.identifiant)==1){
+	gtk_widget_set_visible(success,FALSE);
+	gtk_widget_show(fail);
+	}	
+	else{
+	ajouter_capteur(C);
+	//mise à jour du treeview
+	p=lookup_widget(windowcap,"treeview1");
+	Capteurtree(p,"capteurs.txt");
+	p1=lookup_widget(windowcap,"TreeViewAffichageAlarmante");
+	Alarmantetree(p1,"alarmantes.txt");
+	p2=lookup_widget(windowcap,"treeview2");
+	ChercherCapteur(p2,"capteurs.txt");
+	p3=lookup_widget(windowcap,"treeview3");
+	Defectueuxtree(p3,"defectueux.txt");
+	//bien ajouté 
+	gtk_widget_set_visible(fail,FALSE);
+	gtk_widget_show(success);
+	//vider les champs après ajout
+	gtk_entry_set_text(GTK_ENTRY(entryid),"");
+	gtk_entry_set_text(GTK_ENTRY(entrymar),"");
+	gtk_entry_set_text(GTK_ENTRY(entrypos),"");
+	gtk_spin_button_set_value(GTK_SPIN_BUTTON(entryetat),1);
+	gtk_spin_button_set_value(GTK_SPIN_BUTTON(entryval),0);
+	}
 }
 }
 
