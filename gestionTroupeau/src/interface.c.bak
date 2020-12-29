@@ -66,7 +66,6 @@ create_window_gestion_troupeau_mb (void)
   GtkWidget *label_sexe_2_mb;
   GtkWidget *label_etat_2_mb;
   GtkWidget *label_date_2_mb;
-  GtkWidget *combo_type_2_mb;
   GtkWidget *combo_sexe_2_mb;
   GtkWidget *entry_identifiant_2_mb;
   GtkWidget *label_type_2_mb;
@@ -83,6 +82,7 @@ create_window_gestion_troupeau_mb (void)
   GtkWidget *label_echec_2_mb;
   GtkWidget *label_sucess_2_mb;
   GtkWidget *label19;
+  GtkWidget *combo_type_2_mb;
   GtkWidget *label_afficher_supprimer_animal_mb;
   GtkWidget *fixed5;
   GtkWidget *entry_identifiant_3_mb;
@@ -105,6 +105,7 @@ create_window_gestion_troupeau_mb (void)
   GtkWidget *label_nombre_mb;
 
   window_gestion_troupeau_mb = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_widget_set_size_request (window_gestion_troupeau_mb, 1200, 700);
   gtk_window_set_title (GTK_WINDOW (window_gestion_troupeau_mb), _("Gestion des troupeaux"));
 
   fixed1 = gtk_fixed_new ();
@@ -280,13 +281,6 @@ create_window_gestion_troupeau_mb (void)
   gtk_fixed_put (GTK_FIXED (fixed4), label_date_2_mb, 488, 176);
   gtk_widget_set_size_request (label_date_2_mb, 136, 24);
 
-  combo_type_2_mb = gtk_combo_box_entry_new_text ();
-  gtk_widget_show (combo_type_2_mb);
-  gtk_fixed_put (GTK_FIXED (fixed4), combo_type_2_mb, 680, 56);
-  gtk_widget_set_size_request (combo_type_2_mb, 162, 29);
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combo_type_2_mb), _("Veau"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combo_type_2_mb), _("Brebis"));
-
   combo_sexe_2_mb = gtk_combo_box_entry_new_text ();
   gtk_widget_show (combo_sexe_2_mb);
   gtk_fixed_put (GTK_FIXED (fixed4), combo_sexe_2_mb, 680, 96);
@@ -372,10 +366,17 @@ create_window_gestion_troupeau_mb (void)
   gtk_misc_set_alignment (GTK_MISC (label_sucess_2_mb), 0.49, 0.5);
 
   label19 = gtk_label_new (_("<span foreground=\"red\" ><b>Veuillez selectionner une ligne \303\240 modifier</b></span>"));
-  gtk_fixed_put (GTK_FIXED (fixed4), label19, 872, 480);
-  gtk_widget_set_size_request (label19, 250, 64);
+  gtk_fixed_put (GTK_FIXED (fixed4), label19, 800, 480);
+  gtk_widget_set_size_request (label19, 310, 64);
   gtk_label_set_use_markup (GTK_LABEL (label19), TRUE);
   gtk_misc_set_alignment (GTK_MISC (label19), 0.49, 0.5);
+
+  combo_type_2_mb = gtk_combo_box_entry_new_text ();
+  gtk_widget_show (combo_type_2_mb);
+  gtk_fixed_put (GTK_FIXED (fixed4), combo_type_2_mb, 680, 56);
+  gtk_widget_set_size_request (combo_type_2_mb, 162, 29);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combo_type_2_mb), _("Veau"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combo_type_2_mb), _("Brebis"));
 
   label_afficher_supprimer_animal_mb = gtk_label_new (_("Afficher/Supprimer animal"));
   gtk_widget_show (label_afficher_supprimer_animal_mb);
@@ -467,6 +468,9 @@ create_window_gestion_troupeau_mb (void)
   gtk_widget_show (label_nombre_mb);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (NotebookGestionDesTroupeaux), gtk_notebook_get_nth_page (GTK_NOTEBOOK (NotebookGestionDesTroupeaux), 3), label_nombre_mb);
 
+  g_signal_connect ((gpointer) window_gestion_troupeau_mb, "destroy",
+                    G_CALLBACK (on_window_gestion_troupeau_mb_destroy),
+                    NULL);
   g_signal_connect ((gpointer) button_ajouter_mb, "clicked",
                     G_CALLBACK (on_button_ajouter_clicked),
                     NULL);
@@ -516,7 +520,6 @@ create_window_gestion_troupeau_mb (void)
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_sexe_2_mb, "label_sexe_2_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_etat_2_mb, "label_etat_2_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_date_2_mb, "label_date_2_mb");
-  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, combo_type_2_mb, "combo_type_2_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, combo_sexe_2_mb, "combo_sexe_2_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, entry_identifiant_2_mb, "entry_identifiant_2_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_type_2_mb, "label_type_2_mb");
@@ -533,6 +536,7 @@ create_window_gestion_troupeau_mb (void)
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_echec_2_mb, "label_echec_2_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_sucess_2_mb, "label_sucess_2_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label19, "label19");
+  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, combo_type_2_mb, "combo_type_2_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_afficher_supprimer_animal_mb, "label_afficher_supprimer_animal_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, fixed5, "fixed5");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, entry_identifiant_3_mb, "entry_identifiant_3_mb");
@@ -554,6 +558,40 @@ create_window_gestion_troupeau_mb (void)
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_nombre_brebis_output_mb, "label_nombre_brebis_output_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_nombre_mb, "label_nombre_mb");
 
+  gtk_widget_grab_focus (treeview_1_mb);
   return window_gestion_troupeau_mb;
+}
+
+GtkWidget*
+create_window_mb (void)
+{
+  GtkWidget *window_mb;
+  GtkWidget *fixed9;
+  GtkWidget *button_gestion_mb;
+
+  window_mb = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_widget_set_size_request (window_mb, 350, 350);
+  gtk_window_set_title (GTK_WINDOW (window_mb), _("Accueil"));
+
+  fixed9 = gtk_fixed_new ();
+  gtk_widget_show (fixed9);
+  gtk_container_add (GTK_CONTAINER (window_mb), fixed9);
+
+  button_gestion_mb = gtk_button_new_with_mnemonic (_("Gestion troupeaux"));
+  gtk_widget_show (button_gestion_mb);
+  gtk_fixed_put (GTK_FIXED (fixed9), button_gestion_mb, 88, 104);
+  gtk_widget_set_size_request (button_gestion_mb, 224, 77);
+
+  g_signal_connect ((gpointer) button_gestion_mb, "clicked",
+                    G_CALLBACK (on_button_gestion_mb_clicked),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (window_mb, window_mb, "window_mb");
+  GLADE_HOOKUP_OBJECT (window_mb, fixed9, "fixed9");
+  GLADE_HOOKUP_OBJECT (window_mb, button_gestion_mb, "button_gestion_mb");
+
+  gtk_widget_grab_default (fixed9);
+  return window_mb;
 }
 

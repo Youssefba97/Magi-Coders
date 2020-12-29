@@ -12,10 +12,22 @@ GtkTreeViewColumn *adcolumn;/*visualisation des colonnes*/
 GtkCellRenderer *cellad;/*afficheur de cellule(text,image..)*/
 FILE *f;
 
+
 void AfficherAnimal(GtkWidget* treeview1,char*l)
 {
-
+g_printf("dans afficher animal");
+DataToPass*data1 = malloc(sizeof(struct DataToPass));
+DataToPass*data2 = malloc(sizeof(struct DataToPass));
+DataToPass*data3 = malloc(sizeof(struct DataToPass));
+DataToPass*data4 = malloc(sizeof(struct DataToPass));
+DataToPass*data5 = malloc(sizeof(struct DataToPass));
 Troupeau troupeau;
+
+data1->treeview  = treeview1;
+data2->treeview  = treeview1;
+data3->treeview  = treeview1;
+data4->treeview  = treeview1;
+data5->treeview  = treeview1;
 
 
         /* Creation du modele */
@@ -47,10 +59,14 @@ while(fscanf(f,"%s %s %s %d %s\n",troupeau.identifiant,troupeau.type,troupeau.se
 	/* Creation de la 1ere colonne */
 if(i==0)
 	{cellad = gtk_cell_renderer_text_new();
-        adcolumn = gtk_tree_view_column_new_with_attributes("IDENTIFIANT",
+         g_object_set(cellad, "editable", TRUE, NULL);
+         data1->columnNumber = 0;
+         g_signal_connect(cellad, "edited", (GCallback) cell_edited_callback,data1);
+         adcolumn = gtk_tree_view_column_new_with_attributes("IDENTIFIANT",
                                                             cellad,
                                                             "text", 0,
                                                             NULL);
+        
         /* Ajouter la 1ere colonne à la vue */
 	gtk_tree_view_append_column(GTK_TREE_VIEW(treeview1), adcolumn);
 
@@ -58,6 +74,9 @@ if(i==0)
 
 	/* Creation de la 2eme colonne */
         cellad = gtk_cell_renderer_text_new();
+        g_object_set(cellad, "editable", TRUE, NULL);
+        data2->columnNumber = 1;
+        g_signal_connect(cellad, "edited", (GCallback) cell_edited_callback,data2);
         adcolumn = gtk_tree_view_column_new_with_attributes("TYPE",
                                                             cellad,
                                                             "text", 1,
@@ -69,6 +88,9 @@ if(i==0)
 
 	/* Creation de la 3eme colonne */
         cellad = gtk_cell_renderer_text_new();
+        g_object_set(cellad, "editable", TRUE, NULL);
+        data3->columnNumber = 2;
+        g_signal_connect(cellad, "edited", (GCallback) cell_edited_callback, data3);
         adcolumn = gtk_tree_view_column_new_with_attributes("SEXE",
                                                             cellad,
                                                            "text", 2,
@@ -79,6 +101,9 @@ if(i==0)
 
 	/* Creation de la 4eme colonne */
         cellad = gtk_cell_renderer_text_new();
+        g_object_set(cellad, "editable", TRUE, NULL);
+        data4->columnNumber = 3;
+        g_signal_connect(cellad, "edited", (GCallback) cell_edited_callback, data4);
         adcolumn = gtk_tree_view_column_new_with_attributes("ETAT",
                                                             cellad,
                                                             "text", 3,
@@ -89,6 +114,9 @@ if(i==0)
 
 	/* Creation de la 5eme colonne */
         cellad = gtk_cell_renderer_text_new();
+        g_object_set(cellad, "editable", TRUE, NULL);
+        data5->columnNumber = 4;
+        g_signal_connect(cellad, "edited", (GCallback) cell_edited_callback,data5);
         adcolumn = gtk_tree_view_column_new_with_attributes("DATE",
                                                             cellad,
                                                             "text", 4,
@@ -142,6 +170,8 @@ while(fscanf(f,"%s %s %s %d %s\n",troupeau.identifiant,troupeau.type,troupeau.se
 	/* Creation de la 1ere colonne */
 if(j==0)
 	{cellad = gtk_cell_renderer_text_new();
+         g_object_set(cellad, "editable", TRUE, NULL);
+         g_signal_connect(cellad, "edited", (GCallback) cell_edited_callback,(gpointer) 0);
         adcolumn = gtk_tree_view_column_new_with_attributes("IDENTIFIANT",
                                                             cellad,
                                                             "text", 0,
@@ -153,6 +183,8 @@ if(j==0)
 
 	/* Creation de la 2eme colonne */
         cellad = gtk_cell_renderer_text_new();
+        g_object_set(cellad, "editable", TRUE, NULL);
+        g_signal_connect(cellad, "edited", (GCallback) cell_edited_callback, (gpointer)1);
         adcolumn = gtk_tree_view_column_new_with_attributes("TYPE",
                                                             cellad,
                                                             "text", 1,
@@ -164,6 +196,8 @@ if(j==0)
 
 	/* Creation de la 3eme colonne */
         cellad = gtk_cell_renderer_text_new();
+        g_object_set(cellad, "editable", TRUE, NULL);
+        g_signal_connect(cellad, "edited", (GCallback) cell_edited_callback,(gpointer) 2);
         adcolumn = gtk_tree_view_column_new_with_attributes("SEXE",
                                                             cellad,
                                                            "text", 2,
@@ -174,6 +208,8 @@ if(j==0)
 
 	/* Creation de la 4eme colonne */
         cellad = gtk_cell_renderer_text_new();
+        g_object_set(cellad, "editable", TRUE, NULL);
+        g_signal_connect(cellad, "edited", (GCallback) cell_edited_callback,(gpointer) 3);
         adcolumn = gtk_tree_view_column_new_with_attributes("ETAT",
                                                             cellad,
                                                             "text", 3,
@@ -184,6 +220,8 @@ if(j==0)
 
 	/* Creation de la 5eme colonne */
         cellad = gtk_cell_renderer_text_new();
+        g_object_set(cellad, "editable", TRUE, NULL);
+        g_signal_connect(cellad, "edited", (GCallback) cell_edited_callback,(gpointer) 4);
         adcolumn = gtk_tree_view_column_new_with_attributes("DATE",
                                                             cellad,
                                                             "text", 4,

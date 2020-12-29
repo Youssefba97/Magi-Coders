@@ -19,7 +19,7 @@
 int
 main (int argc, char *argv[])
 {
-  GtkWidget *window_gestion_troupeau_mb;
+  GtkWidget *window_gestion_troupeau_mb,*window_mb;
   char nombreBrebis[30];
   char nombreVeaux[30];
   int nbBrebis,nbVeaux;
@@ -40,20 +40,10 @@ main (int argc, char *argv[])
    * (except popup menus), just so that you see something after building
    * the project. Delete any components that you don't want shown initially.
    */
-  window_gestion_troupeau_mb = create_window_gestion_troupeau_mb ();
-  gtk_widget_show (window_gestion_troupeau_mb);
-  GtkWidget* p1=lookup_widget(window_gestion_troupeau_mb,"treeview_1_mb");
-  AfficherAnimal(p1,"troupeau.txt");
-  GtkWidget* p2=lookup_widget(window_gestion_troupeau_mb,"treeview_2_mb");
-  AfficherRechercheAnimal(p2,"troupeau.txt");
-  GtkWidget* p3=lookup_widget(window_gestion_troupeau_mb,"label_nombre_veau_output_mb");
-  GtkWidget* p4=lookup_widget(window_gestion_troupeau_mb,"label_nombre_brebis_output_mb");
-  nbVeaux = nombre_veaux();
-  snprintf(nombreVeaux, 30, "%d", nbVeaux);
-  gtk_label_set_text(p3,nombreVeaux);
-  nbBrebis = nombre_brebis();
-  snprintf(nombreBrebis, 30, "%d", nbBrebis);
-  gtk_label_set_text(p4,nombreBrebis);
+  window_mb=create_window_mb();
+  gtk_widget_show (window_mb);
+  g_signal_connect(G_OBJECT(window_mb),
+        "destroy", gtk_main_quit, NULL);
   gtk_main ();
   return 0;
 }

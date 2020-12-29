@@ -240,16 +240,6 @@ gtk_widget_show(labelSelection);
 
 
 void
-on_treeview_1_mb_row_activated         (GtkWidget* window_gestion_troupeau_mb,
-                                        GtkTreePath* path,
-                                        GtkTreeViewColumn* column,
-                                        gpointer user_data)
-{
-
-}
-
-
-void
 on_button_chercher_clicked             (GtkWidget       *window_gestion_troupeau_mb,
                                         gpointer         user_data)
 {
@@ -301,13 +291,62 @@ on_button_supprimer_clicked            (GtkWidget       *window_gestion_troupeau
 }
 
 
-void
-on_treeview_2_mb_row_activated         (GtkWidget     *window_gestion_troupeau_mb,
-                                        GtkTreePath     *path,
-                                        GtkTreeViewColumn *column,
-                                        gpointer         user_data)
-{
 
+void cell_edited_callback (GtkWidget *window_gestion_troupeau_mb,
+                                  gchar               *path_string,
+                                  gchar               *new_text,
+                                  gpointer             user_data){
+
+        GtkWidget* p1,*p2;
+GtkWidget *labelId,*existe, *success;
+Troupeau troupeau;
+
+DataToPass *d =user_data;
+    g_print("%d\n", d->columnNumber);
+labelId=lookup_widget(window_gestion_troupeau_mb,"label12");
+existe=lookup_widget(window_gestion_troupeau_mb,"label_echec_2_mb");
+success=lookup_widget(window_gestion_troupeau_mb,"label_sucess_2_mb");
+
+if(strcmp(new_text,"")==0){
+ gtk_widget_show(labelId);}
+else{
+gtk_widget_set_visible(labelId,FALSE);
+}
+if(animal_exist(new_text)==1 /*&& strcmp(new_text,identifiant)!=0*/){
+gtk_widget_set_visible(success,FALSE);
+gtk_widget_show(existe);
+}else{
+modify_singleValue(new_text,path_string,d->columnNumber);
+g_print("après modify");
+p1=lookup_widget(window_gestion_troupeau_mb,"treeview_1_mb");
+AfficherAnimal(d->treeview,"troupeau.txt");
+p2=lookup_widget(window_gestion_troupeau_mb,"treeview_2_mb");
+AfficherRechercheAnimal(p2,"troupeau.txt");
+}
 }
 
+
+void
+on_button_gestion_mb_clicked           (GtkButton       *button,
+                                        gpointer         user_data)
+{
+GtkWidget *window_gestion_troupeau_mb = create_window_gestion_troupeau_mb();
+  char nombreBrebis[30];
+  char nombreVeaux[30];
+  int nbBrebis,nbVeaux;
+  gtk_widget_show (window_gestion_troupeau_mb);
+  GtkWidget* p1=lookup_widget(window_gestion_troupeau_mb,"treeview_1_mb");
+  AfficherAnimal(p1,"troupeau.txt");
+  GtkWidget* p2=lookup_widget(window_gestion_troupeau_mb,"treeview_2_mb");
+  AfficherRechercheAnimal(p2,"troupeau.txt");
+  GtkWidget* p3=lookup_widget(window_gestion_troupeau_mb,"label_nombre_veau_output_mb");
+  GtkWidget* p4=lookup_widget(window_gestion_troupeau_mb,"label_nombre_brebis_output_mb");
+  nbVeaux = nombre_veaux();
+  snprintf(nombreVeaux, 30, "%d", nbVeaux);
+  gtk_label_set_text(p3,nombreVeaux);
+  nbBrebis = nombre_brebis();
+  snprintf(nombreBrebis, 30, "%d", nbBrebis);
+  gtk_label_set_text(p4,nombreBrebis);
+
+}
 

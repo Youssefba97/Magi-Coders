@@ -3,7 +3,6 @@
 #include<string.h>
 #include "troupeau.h"
 
-
 void ajouter_animal(Troupeau troupeau,int jour, int mois, int annee){
 FILE* f= fopen("troupeau.txt","a+");
 if(f == NULL){
@@ -113,5 +112,45 @@ if(strcmp(troupeau.identifiant,identifiant)==0)return 1;
 fclose(f);
 return 0;
 }
+
+
+void modify_singleValue(char * newValue, char* path,int columnNumber){
+FILE*f=fopen("troupeau.txt","r");
+FILE*f1=fopen("ancien_troupeau.txt","w+");
+Troupeau troupeau;
+int path_int= atoi(path);
+int line=0;
+while(fscanf(f,"%s %s %s %d %s\n",troupeau.identifiant,troupeau.type,troupeau.sexe,&troupeau.etat,troupeau.date)!=EOF){
+if(path_int == line){
+
+if(columnNumber == 0){
+fprintf(f1,"%s %s %s %d %s\n",newValue,troupeau.type,troupeau.sexe,troupeau.etat,troupeau.date);}
+
+else if(columnNumber == 1){
+fprintf(f1,"%s %s %s %d %s\n",troupeau.identifiant,newValue,troupeau.sexe,troupeau.etat,troupeau.date);}
+
+else if(columnNumber == 2){
+fprintf(f1,"%s %s %s %d %s\n",troupeau.identifiant,troupeau.type,newValue,troupeau.etat,troupeau.date);}
+
+else if(columnNumber == 3){
+fprintf(f1,"%s %s %s %d %s\n",troupeau.identifiant,troupeau.type,troupeau.sexe,atoi(newValue),troupeau.date);}
+
+else{
+fprintf(f1,"%s %s %s %d %s\n",troupeau.identifiant,newValue,troupeau.sexe,troupeau.etat,newValue);}
+
+}
+
+
+else{
+fprintf(f1,"%s %s %s %d %s\n",troupeau.identifiant,troupeau.type,troupeau.sexe,troupeau.etat,troupeau.date);
+}
+line++;
+}
+fclose(f);
+fclose(f1);
+remove("troupeau.txt");
+rename("ancien_troupeau.txt","troupeau.txt");
+}
+
 
 

@@ -3,3 +3,4 @@
  */
 
 GtkWidget* create_window_gestion_troupeau_mb (void);
+GtkWidget* create_window_mb (void);

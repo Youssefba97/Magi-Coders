@@ -105,6 +105,7 @@ create_window_gestion_troupeau_mb (void)
   GtkWidget *label_nombre_mb;
 
   window_gestion_troupeau_mb = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_widget_set_size_request (window_gestion_troupeau_mb, 1200, 700);
   gtk_window_set_title (GTK_WINDOW (window_gestion_troupeau_mb), _("Gestion des troupeaux"));
 
   fixed1 = gtk_fixed_new ();
@@ -467,6 +468,9 @@ create_window_gestion_troupeau_mb (void)
   gtk_widget_show (label_nombre_mb);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (NotebookGestionDesTroupeaux), gtk_notebook_get_nth_page (GTK_NOTEBOOK (NotebookGestionDesTroupeaux), 3), label_nombre_mb);
 
+  g_signal_connect ((gpointer) window_gestion_troupeau_mb, "destroy",
+                    G_CALLBACK (on_window_gestion_troupeau_mb_destroy),
+                    NULL);
   g_signal_connect ((gpointer) button_ajouter_mb, "clicked",
                     G_CALLBACK (on_button_ajouter_clicked),
                     NULL);
@@ -554,6 +558,40 @@ create_window_gestion_troupeau_mb (void)
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_nombre_brebis_output_mb, "label_nombre_brebis_output_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_nombre_mb, "label_nombre_mb");
 
+  gtk_widget_grab_focus (treeview_1_mb);
   return window_gestion_troupeau_mb;
+}
+
+GtkWidget*
+create_window_mb (void)
+{
+  GtkWidget *window_mb;
+  GtkWidget *fixed9;
+  GtkWidget *button_gestion_mb;
+
+  window_mb = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+  gtk_widget_set_size_request (window_mb, 350, 350);
+  gtk_window_set_title (GTK_WINDOW (window_mb), _("Accueil"));
+
+  fixed9 = gtk_fixed_new ();
+  gtk_widget_show (fixed9);
+  gtk_container_add (GTK_CONTAINER (window_mb), fixed9);
+
+  button_gestion_mb = gtk_button_new_with_mnemonic (_("Gestion troupeaux"));
+  gtk_widget_show (button_gestion_mb);
+  gtk_fixed_put (GTK_FIXED (fixed9), button_gestion_mb, 88, 104);
+  gtk_widget_set_size_request (button_gestion_mb, 224, 77);
+
+  g_signal_connect ((gpointer) button_gestion_mb, "clicked",
+                    G_CALLBACK (on_button_gestion_mb_clicked),
+                    NULL);
+
+  /* Store pointers to all widgets, for use by lookup_widget(). */
+  GLADE_HOOKUP_OBJECT_NO_REF (window_mb, window_mb, "window_mb");
+  GLADE_HOOKUP_OBJECT (window_mb, fixed9, "fixed9");
+  GLADE_HOOKUP_OBJECT (window_mb, button_gestion_mb, "button_gestion_mb");
+
+  gtk_widget_grab_default (fixed9);
+  return window_mb;
 }
 
