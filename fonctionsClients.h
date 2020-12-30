@@ -16,7 +16,8 @@ void ajoutClient(client C);  // la sortie est la nouvelle taille du tableau
 void modifClient (char *id,client tempo);
 void SuppClient(char *id);
 void afficherClient();
-void chercherClient (char *id);
+client chercherClient (char *id);
+
 
 
 
