@@ -34,7 +34,7 @@ void
 on_button_gestion_mb_clicked           (GtkButton       *button,
                                         gpointer         user_data);
 
+
 void
 on_button_gestion_mb_clicked           (GtkButton       *button,
                                         gpointer         user_data);
-

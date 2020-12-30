@@ -326,15 +326,17 @@ AfficherRechercheAnimal(p2,"troupeau.txt");
 }
 
 
+
 void
 on_button_gestion_mb_clicked           (GtkButton       *button,
                                         gpointer         user_data)
 {
-GtkWidget *window_gestion_troupeau_mb = create_window_gestion_troupeau_mb();
+
+  GtkWidget *window_gestion_troupeau_mb = create_window_gestion_troupeau_mb();
+  gtk_widget_show (window_gestion_troupeau_mb);
   char nombreBrebis[30];
   char nombreVeaux[30];
   int nbBrebis,nbVeaux;
-  gtk_widget_show (window_gestion_troupeau_mb);
   GtkWidget* p1=lookup_widget(window_gestion_troupeau_mb,"treeview_1_mb");
   AfficherAnimal(p1,"troupeau.txt");
   GtkWidget* p2=lookup_widget(window_gestion_troupeau_mb,"treeview_2_mb");

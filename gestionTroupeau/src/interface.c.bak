@@ -40,6 +40,7 @@ create_window_gestion_troupeau_mb (void)
   GtkWidget *label_sexe_1_mb;
   GtkWidget *label_etat_1_mb;
   GtkWidget *label_date_1_mb;
+  GtkWidget *label_Identifiant_1_mb;
   GtkWidget *calendar_mb1;
   GtkWidget *combo_sexe_1_mb;
   GtkWidget *button_ajouter_mb;
@@ -47,13 +48,14 @@ create_window_gestion_troupeau_mb (void)
   GtkWidget *hbox1;
   GtkWidget *image1;
   GtkWidget *label8;
-  GtkWidget *combo_type_1_mb;
-  GtkWidget *label_Identifiant_1_mb;
   GtkWidget *label3;
   GtkWidget *label4;
   GtkWidget *label5;
+  GtkWidget *label6;
+  GtkWidget *label7;
   GtkWidget *label_echec_1_mb;
   GtkWidget *label_sucess_1_mb;
+  GtkWidget *combo_type_1_mb;
   GtkWidget *label_ajouter_animal_mb;
   GtkWidget *fixed4;
   GtkObject *spin_button_etat_2_mb_adj;
@@ -63,26 +65,19 @@ create_window_gestion_troupeau_mb (void)
   GtkWidget *hbox2;
   GtkWidget *image2;
   GtkWidget *label9;
+  GtkWidget *label_type_2_mb;
   GtkWidget *label_sexe_2_mb;
   GtkWidget *label_etat_2_mb;
+  GtkWidget *entry_date_2_mb;
+  GtkWidget *button_modifier_mb;
   GtkWidget *label_date_2_mb;
-  GtkWidget *combo_sexe_2_mb;
-  GtkWidget *entry_identifiant_2_mb;
-  GtkWidget *label_type_2_mb;
-  GtkWidget *label_identifiant_2_mb;
-  GtkWidget *calendar_mb2;
+  GtkWidget *label_sucess_2_mb;
   GtkWidget *scrolled_window_1_mb;
   GtkWidget *viewport1;
   GtkWidget *fixed6;
   GtkWidget *treeview_1_mb;
-  GtkWidget *label12;
-  GtkWidget *label13;
-  GtkWidget *label14;
-  GtkWidget *button_modifier_mb;
-  GtkWidget *label_echec_2_mb;
-  GtkWidget *label_sucess_2_mb;
-  GtkWidget *label19;
   GtkWidget *combo_type_2_mb;
+  GtkWidget *combo_sexe_2_mb;
   GtkWidget *label_afficher_supprimer_animal_mb;
   GtkWidget *fixed5;
   GtkWidget *entry_identifiant_3_mb;
@@ -90,12 +85,8 @@ create_window_gestion_troupeau_mb (void)
   GtkWidget *viewport2;
   GtkWidget *fixed8;
   GtkWidget *treeview_2_mb;
-  GtkWidget *button_chercher_mb;
-  GtkWidget *alignment3;
-  GtkWidget *hbox3;
-  GtkWidget *image3;
-  GtkWidget *label11;
   GtkWidget *label_Identifiant_3_mb;
+  GtkWidget *button_chercher_mb;
   GtkWidget *label_chercher_animal_mb;
   GtkWidget *fixed7;
   GtkWidget *label_nombre_brebis_mb;
@@ -105,7 +96,6 @@ create_window_gestion_troupeau_mb (void)
   GtkWidget *label_nombre_mb;
 
   window_gestion_troupeau_mb = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  gtk_widget_set_size_request (window_gestion_troupeau_mb, 1200, 700);
   gtk_window_set_title (GTK_WINDOW (window_gestion_troupeau_mb), _("Gestion des troupeaux"));
 
   fixed1 = gtk_fixed_new ();
@@ -114,8 +104,8 @@ create_window_gestion_troupeau_mb (void)
 
   NotebookGestionDesTroupeaux = gtk_notebook_new ();
   gtk_widget_show (NotebookGestionDesTroupeaux);
-  gtk_fixed_put (GTK_FIXED (fixed1), NotebookGestionDesTroupeaux, 0, 0);
-  gtk_widget_set_size_request (NotebookGestionDesTroupeaux, 352, 16);
+  gtk_fixed_put (GTK_FIXED (fixed1), NotebookGestionDesTroupeaux, 8, 40);
+  gtk_widget_set_size_request (NotebookGestionDesTroupeaux, 872, 600);
 
   fixed2 = gtk_fixed_new ();
   gtk_widget_show (fixed2);
@@ -153,6 +143,11 @@ create_window_gestion_troupeau_mb (void)
   gtk_fixed_put (GTK_FIXED (fixed2), label_date_1_mb, 160, 224);
   gtk_widget_set_size_request (label_date_1_mb, 136, 24);
 
+  label_Identifiant_1_mb = gtk_label_new (_("Identifiant"));
+  gtk_widget_show (label_Identifiant_1_mb);
+  gtk_fixed_put (GTK_FIXED (fixed2), label_Identifiant_1_mb, 136, 64);
+  gtk_widget_set_size_request (label_Identifiant_1_mb, 128, 24);
+
   calendar_mb1 = gtk_calendar_new ();
   gtk_widget_show (calendar_mb1);
   gtk_fixed_put (GTK_FIXED (fixed2), calendar_mb1, 296, 224);
@@ -189,18 +184,6 @@ create_window_gestion_troupeau_mb (void)
   gtk_widget_show (label8);
   gtk_box_pack_start (GTK_BOX (hbox1), label8, FALSE, FALSE, 0);
 
-  combo_type_1_mb = gtk_combo_box_entry_new_text ();
-  gtk_widget_show (combo_type_1_mb);
-  gtk_fixed_put (GTK_FIXED (fixed2), combo_type_1_mb, 296, 104);
-  gtk_widget_set_size_request (combo_type_1_mb, 168, 29);
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combo_type_1_mb), _("Veau"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combo_type_1_mb), _("Brebis"));
-
-  label_Identifiant_1_mb = gtk_label_new (_("Identifiant"));
-  gtk_widget_show (label_Identifiant_1_mb);
-  gtk_fixed_put (GTK_FIXED (fixed2), label_Identifiant_1_mb, 136, 64);
-  gtk_widget_set_size_request (label_Identifiant_1_mb, 128, 24);
-
   label3 = gtk_label_new (_("<span foreground=\"red\" ><b>Veuillez saisir un identifiant</b></span>"));
   gtk_fixed_put (GTK_FIXED (fixed2), label3, 448, 48);
   gtk_widget_set_size_request (label3, 250, 64);
@@ -219,6 +202,18 @@ create_window_gestion_troupeau_mb (void)
   gtk_label_set_use_markup (GTK_LABEL (label5), TRUE);
   gtk_misc_set_alignment (GTK_MISC (label5), 0.49, 0.5);
 
+  label6 = gtk_label_new (_("<span foreground=\"red\" ><b>Veuillez saisir un etat</b></span>"));
+  gtk_fixed_put (GTK_FIXED (fixed2), label6, 424, 168);
+  gtk_widget_set_size_request (label6, 250, 64);
+  gtk_label_set_use_markup (GTK_LABEL (label6), TRUE);
+  gtk_misc_set_alignment (GTK_MISC (label6), 0.49, 0.5);
+
+  label7 = gtk_label_new (_("<span foreground=\"red\" ><b>Veuillez saisir un date de naissance</b></span>"));
+  gtk_fixed_put (GTK_FIXED (fixed2), label7, 472, 264);
+  gtk_widget_set_size_request (label7, 250, 64);
+  gtk_label_set_use_markup (GTK_LABEL (label7), TRUE);
+  gtk_misc_set_alignment (GTK_MISC (label7), 0.49, 0.5);
+
   label_echec_1_mb = gtk_label_new (_("<span foreground=\"red\" ><b>L'animal existe deja !</b></span>"));
   gtk_fixed_put (GTK_FIXED (fixed2), label_echec_1_mb, 8, 464);
   gtk_widget_set_size_request (label_echec_1_mb, 250, 64);
@@ -230,6 +225,13 @@ create_window_gestion_troupeau_mb (void)
   gtk_widget_set_size_request (label_sucess_1_mb, 250, 64);
   gtk_label_set_use_markup (GTK_LABEL (label_sucess_1_mb), TRUE);
   gtk_misc_set_alignment (GTK_MISC (label_sucess_1_mb), 0.49, 0.5);
+
+  combo_type_1_mb = gtk_combo_box_entry_new_text ();
+  gtk_widget_show (combo_type_1_mb);
+  gtk_fixed_put (GTK_FIXED (fixed2), combo_type_1_mb, 296, 104);
+  gtk_widget_set_size_request (combo_type_1_mb, 168, 29);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combo_type_1_mb), _("Veau"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combo_type_1_mb), _("Brebis"));
 
   label_ajouter_animal_mb = gtk_label_new (_("Ajouter animal"));
   gtk_widget_show (label_ajouter_animal_mb);
@@ -266,6 +268,11 @@ create_window_gestion_troupeau_mb (void)
   gtk_widget_show (label9);
   gtk_box_pack_start (GTK_BOX (hbox2), label9, FALSE, FALSE, 0);
 
+  label_type_2_mb = gtk_label_new (_("Type"));
+  gtk_widget_show (label_type_2_mb);
+  gtk_fixed_put (GTK_FIXED (fixed4), label_type_2_mb, 536, 56);
+  gtk_widget_set_size_request (label_type_2_mb, 128, 25);
+
   label_sexe_2_mb = gtk_label_new (_("Sexe"));
   gtk_widget_show (label_sexe_2_mb);
   gtk_fixed_put (GTK_FIXED (fixed4), label_sexe_2_mb, 536, 96);
@@ -276,45 +283,32 @@ create_window_gestion_troupeau_mb (void)
   gtk_fixed_put (GTK_FIXED (fixed4), label_etat_2_mb, 536, 136);
   gtk_widget_set_size_request (label_etat_2_mb, 120, 25);
 
+  entry_date_2_mb = gtk_entry_new ();
+  gtk_widget_show (entry_date_2_mb);
+  gtk_fixed_put (GTK_FIXED (fixed4), entry_date_2_mb, 680, 176);
+  gtk_widget_set_size_request (entry_date_2_mb, 160, 27);
+  gtk_entry_set_invisible_char (GTK_ENTRY (entry_date_2_mb), 8226);
+
+  button_modifier_mb = gtk_button_new_with_mnemonic (_("Modifier"));
+  gtk_widget_show (button_modifier_mb);
+  gtk_fixed_put (GTK_FIXED (fixed4), button_modifier_mb, 640, 240);
+  gtk_widget_set_size_request (button_modifier_mb, 120, 37);
+
   label_date_2_mb = gtk_label_new (_("Date de naissance"));
   gtk_widget_show (label_date_2_mb);
   gtk_fixed_put (GTK_FIXED (fixed4), label_date_2_mb, 488, 176);
   gtk_widget_set_size_request (label_date_2_mb, 136, 24);
 
-  combo_sexe_2_mb = gtk_combo_box_entry_new_text ();
-  gtk_widget_show (combo_sexe_2_mb);
-  gtk_fixed_put (GTK_FIXED (fixed4), combo_sexe_2_mb, 680, 96);
-  gtk_widget_set_size_request (combo_sexe_2_mb, 162, 29);
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combo_sexe_2_mb), _("Male"));
-  gtk_combo_box_append_text (GTK_COMBO_BOX (combo_sexe_2_mb), _("Femelle"));
-
-  entry_identifiant_2_mb = gtk_entry_new ();
-  gtk_widget_show (entry_identifiant_2_mb);
-  gtk_fixed_put (GTK_FIXED (fixed4), entry_identifiant_2_mb, 680, 16);
-  gtk_widget_set_size_request (entry_identifiant_2_mb, 168, 27);
-  gtk_entry_set_invisible_char (GTK_ENTRY (entry_identifiant_2_mb), 8226);
-
-  label_type_2_mb = gtk_label_new (_("Type"));
-  gtk_widget_show (label_type_2_mb);
-  gtk_fixed_put (GTK_FIXED (fixed4), label_type_2_mb, 536, 56);
-  gtk_widget_set_size_request (label_type_2_mb, 128, 25);
-
-  label_identifiant_2_mb = gtk_label_new (_("Identifiant"));
-  gtk_widget_show (label_identifiant_2_mb);
-  gtk_fixed_put (GTK_FIXED (fixed4), label_identifiant_2_mb, 520, 16);
-  gtk_widget_set_size_request (label_identifiant_2_mb, 128, 24);
-
-  calendar_mb2 = gtk_calendar_new ();
-  gtk_widget_show (calendar_mb2);
-  gtk_fixed_put (GTK_FIXED (fixed4), calendar_mb2, 680, 184);
-  gtk_widget_set_size_request (calendar_mb2, 168, 192);
-  gtk_calendar_display_options (GTK_CALENDAR (calendar_mb2),
-                                GTK_CALENDAR_SHOW_HEADING
-                                | GTK_CALENDAR_SHOW_DAY_NAMES);
+  label_sucess_2_mb = gtk_label_new (_("<span foreground=\"green\" ><b>L'animal a \303\251t\303\251 modifi\303\251 avec succ\303\250s !</b></span>"));
+  gtk_widget_show (label_sucess_2_mb);
+  gtk_fixed_put (GTK_FIXED (fixed4), label_sucess_2_mb, 520, 312);
+  gtk_widget_set_size_request (label_sucess_2_mb, 302, 128);
+  gtk_label_set_use_markup (GTK_LABEL (label_sucess_2_mb), TRUE);
+  gtk_misc_set_alignment (GTK_MISC (label_sucess_2_mb), 0.49, 0.5);
 
   scrolled_window_1_mb = gtk_scrolled_window_new (NULL, NULL);
   gtk_widget_show (scrolled_window_1_mb);
-  gtk_fixed_put (GTK_FIXED (fixed4), scrolled_window_1_mb, 8, 8);
+  gtk_fixed_put (GTK_FIXED (fixed4), scrolled_window_1_mb, 0, 0);
   gtk_widget_set_size_request (scrolled_window_1_mb, 480, 480);
 
   viewport1 = gtk_viewport_new (NULL, NULL);
@@ -330,53 +324,19 @@ create_window_gestion_troupeau_mb (void)
   gtk_fixed_put (GTK_FIXED (fixed6), treeview_1_mb, 0, 0);
   gtk_widget_set_size_request (treeview_1_mb, 648, 472);
 
-  label12 = gtk_label_new (_("<span foreground=\"red\" ><b>Veuillez saisir un identifiant</b></span>"));
-  gtk_fixed_put (GTK_FIXED (fixed4), label12, 856, 0);
-  gtk_widget_set_size_request (label12, 250, 64);
-  gtk_label_set_use_markup (GTK_LABEL (label12), TRUE);
-  gtk_misc_set_alignment (GTK_MISC (label12), 0.49, 0.5);
-
-  label13 = gtk_label_new (_("<span foreground=\"red\" ><b>Veuillez saisir un type</b></span>"));
-  gtk_fixed_put (GTK_FIXED (fixed4), label13, 840, 40);
-  gtk_widget_set_size_request (label13, 250, 64);
-  gtk_label_set_use_markup (GTK_LABEL (label13), TRUE);
-  gtk_misc_set_alignment (GTK_MISC (label13), 0.49, 0.5);
-
-  label14 = gtk_label_new (_("<span foreground=\"red\" ><b>Veuillez saisir un sexe</b></span>"));
-  gtk_fixed_put (GTK_FIXED (fixed4), label14, 840, 80);
-  gtk_widget_set_size_request (label14, 250, 64);
-  gtk_label_set_use_markup (GTK_LABEL (label14), TRUE);
-  gtk_misc_set_alignment (GTK_MISC (label14), 0.49, 0.5);
-
-  button_modifier_mb = gtk_button_new_with_mnemonic (_("Modifier"));
-  gtk_widget_show (button_modifier_mb);
-  gtk_fixed_put (GTK_FIXED (fixed4), button_modifier_mb, 800, 416);
-  gtk_widget_set_size_request (button_modifier_mb, 120, 37);
-
-  label_echec_2_mb = gtk_label_new (_("<span foreground=\"red\" ><b>L'animal existe deja !</b></span>"));
-  gtk_fixed_put (GTK_FIXED (fixed4), label_echec_2_mb, 512, 424);
-  gtk_widget_set_size_request (label_echec_2_mb, 250, 64);
-  gtk_label_set_use_markup (GTK_LABEL (label_echec_2_mb), TRUE);
-  gtk_misc_set_alignment (GTK_MISC (label_echec_2_mb), 0.49, 0.5);
-
-  label_sucess_2_mb = gtk_label_new (_("<span foreground=\"green\" ><b>L'animal a \303\251t\303\251 modifi\303\251 avec succ\303\250s !</b></span>"));
-  gtk_fixed_put (GTK_FIXED (fixed4), label_sucess_2_mb, 512, 424);
-  gtk_widget_set_size_request (label_sucess_2_mb, 250, 64);
-  gtk_label_set_use_markup (GTK_LABEL (label_sucess_2_mb), TRUE);
-  gtk_misc_set_alignment (GTK_MISC (label_sucess_2_mb), 0.49, 0.5);
-
-  label19 = gtk_label_new (_("<span foreground=\"red\" ><b>Veuillez selectionner une ligne \303\240 modifier</b></span>"));
-  gtk_fixed_put (GTK_FIXED (fixed4), label19, 800, 480);
-  gtk_widget_set_size_request (label19, 310, 64);
-  gtk_label_set_use_markup (GTK_LABEL (label19), TRUE);
-  gtk_misc_set_alignment (GTK_MISC (label19), 0.49, 0.5);
-
   combo_type_2_mb = gtk_combo_box_entry_new_text ();
   gtk_widget_show (combo_type_2_mb);
   gtk_fixed_put (GTK_FIXED (fixed4), combo_type_2_mb, 680, 56);
   gtk_widget_set_size_request (combo_type_2_mb, 162, 29);
   gtk_combo_box_append_text (GTK_COMBO_BOX (combo_type_2_mb), _("Veau"));
   gtk_combo_box_append_text (GTK_COMBO_BOX (combo_type_2_mb), _("Brebis"));
+
+  combo_sexe_2_mb = gtk_combo_box_entry_new_text ();
+  gtk_widget_show (combo_sexe_2_mb);
+  gtk_fixed_put (GTK_FIXED (fixed4), combo_sexe_2_mb, 680, 96);
+  gtk_widget_set_size_request (combo_sexe_2_mb, 162, 29);
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combo_sexe_2_mb), _("Male"));
+  gtk_combo_box_append_text (GTK_COMBO_BOX (combo_sexe_2_mb), _("Femelle"));
 
   label_afficher_supprimer_animal_mb = gtk_label_new (_("Afficher/Supprimer animal"));
   gtk_widget_show (label_afficher_supprimer_animal_mb);
@@ -410,31 +370,15 @@ create_window_gestion_troupeau_mb (void)
   gtk_fixed_put (GTK_FIXED (fixed8), treeview_2_mb, 0, 0);
   gtk_widget_set_size_request (treeview_2_mb, 428, 328);
 
-  button_chercher_mb = gtk_button_new ();
-  gtk_widget_show (button_chercher_mb);
-  gtk_fixed_put (GTK_FIXED (fixed5), button_chercher_mb, 600, 160);
-  gtk_widget_set_size_request (button_chercher_mb, 120, 37);
-
-  alignment3 = gtk_alignment_new (0.5, 0.5, 0, 0);
-  gtk_widget_show (alignment3);
-  gtk_container_add (GTK_CONTAINER (button_chercher_mb), alignment3);
-
-  hbox3 = gtk_hbox_new (FALSE, 2);
-  gtk_widget_show (hbox3);
-  gtk_container_add (GTK_CONTAINER (alignment3), hbox3);
-
-  image3 = gtk_image_new_from_stock ("gtk-find", GTK_ICON_SIZE_BUTTON);
-  gtk_widget_show (image3);
-  gtk_box_pack_start (GTK_BOX (hbox3), image3, FALSE, FALSE, 0);
-
-  label11 = gtk_label_new_with_mnemonic (_("Chercher"));
-  gtk_widget_show (label11);
-  gtk_box_pack_start (GTK_BOX (hbox3), label11, FALSE, FALSE, 0);
-
   label_Identifiant_3_mb = gtk_label_new (_("Identifiant"));
   gtk_widget_show (label_Identifiant_3_mb);
   gtk_fixed_put (GTK_FIXED (fixed5), label_Identifiant_3_mb, 496, 104);
   gtk_widget_set_size_request (label_Identifiant_3_mb, 128, 24);
+
+  button_chercher_mb = gtk_button_new_with_mnemonic (_("Chercher"));
+  gtk_widget_show (button_chercher_mb);
+  gtk_fixed_put (GTK_FIXED (fixed5), button_chercher_mb, 600, 160);
+  gtk_widget_set_size_request (button_chercher_mb, 120, 37);
 
   label_chercher_animal_mb = gtk_label_new (_("Chercher animal"));
   gtk_widget_show (label_chercher_animal_mb);
@@ -468,9 +412,6 @@ create_window_gestion_troupeau_mb (void)
   gtk_widget_show (label_nombre_mb);
   gtk_notebook_set_tab_label (GTK_NOTEBOOK (NotebookGestionDesTroupeaux), gtk_notebook_get_nth_page (GTK_NOTEBOOK (NotebookGestionDesTroupeaux), 3), label_nombre_mb);
 
-  g_signal_connect ((gpointer) window_gestion_troupeau_mb, "destroy",
-                    G_CALLBACK (on_window_gestion_troupeau_mb_destroy),
-                    NULL);
   g_signal_connect ((gpointer) button_ajouter_mb, "clicked",
                     G_CALLBACK (on_button_ajouter_clicked),
                     NULL);
@@ -495,6 +436,7 @@ create_window_gestion_troupeau_mb (void)
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_sexe_1_mb, "label_sexe_1_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_etat_1_mb, "label_etat_1_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_date_1_mb, "label_date_1_mb");
+  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_Identifiant_1_mb, "label_Identifiant_1_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, calendar_mb1, "calendar_mb1");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, combo_sexe_1_mb, "combo_sexe_1_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, button_ajouter_mb, "button_ajouter_mb");
@@ -502,13 +444,14 @@ create_window_gestion_troupeau_mb (void)
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, hbox1, "hbox1");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, image1, "image1");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label8, "label8");
-  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, combo_type_1_mb, "combo_type_1_mb");
-  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_Identifiant_1_mb, "label_Identifiant_1_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label3, "label3");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label4, "label4");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label5, "label5");
+  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label6, "label6");
+  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label7, "label7");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_echec_1_mb, "label_echec_1_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_sucess_1_mb, "label_sucess_1_mb");
+  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, combo_type_1_mb, "combo_type_1_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_ajouter_animal_mb, "label_ajouter_animal_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, fixed4, "fixed4");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, spin_button_etat_2_mb, "spin_button_etat_2_mb");
@@ -517,26 +460,19 @@ create_window_gestion_troupeau_mb (void)
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, hbox2, "hbox2");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, image2, "image2");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label9, "label9");
+  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_type_2_mb, "label_type_2_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_sexe_2_mb, "label_sexe_2_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_etat_2_mb, "label_etat_2_mb");
+  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, entry_date_2_mb, "entry_date_2_mb");
+  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, button_modifier_mb, "button_modifier_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_date_2_mb, "label_date_2_mb");
-  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, combo_sexe_2_mb, "combo_sexe_2_mb");
-  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, entry_identifiant_2_mb, "entry_identifiant_2_mb");
-  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_type_2_mb, "label_type_2_mb");
-  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_identifiant_2_mb, "label_identifiant_2_mb");
-  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, calendar_mb2, "calendar_mb2");
+  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_sucess_2_mb, "label_sucess_2_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, scrolled_window_1_mb, "scrolled_window_1_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, viewport1, "viewport1");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, fixed6, "fixed6");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, treeview_1_mb, "treeview_1_mb");
-  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label12, "label12");
-  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label13, "label13");
-  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label14, "label14");
-  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, button_modifier_mb, "button_modifier_mb");
-  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_echec_2_mb, "label_echec_2_mb");
-  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_sucess_2_mb, "label_sucess_2_mb");
-  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label19, "label19");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, combo_type_2_mb, "combo_type_2_mb");
+  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, combo_sexe_2_mb, "combo_sexe_2_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_afficher_supprimer_animal_mb, "label_afficher_supprimer_animal_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, fixed5, "fixed5");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, entry_identifiant_3_mb, "entry_identifiant_3_mb");
@@ -544,12 +480,8 @@ create_window_gestion_troupeau_mb (void)
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, viewport2, "viewport2");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, fixed8, "fixed8");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, treeview_2_mb, "treeview_2_mb");
-  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, button_chercher_mb, "button_chercher_mb");
-  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, alignment3, "alignment3");
-  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, hbox3, "hbox3");
-  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, image3, "image3");
-  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label11, "label11");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_Identifiant_3_mb, "label_Identifiant_3_mb");
+  GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, button_chercher_mb, "button_chercher_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_chercher_animal_mb, "label_chercher_animal_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, fixed7, "fixed7");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_nombre_brebis_mb, "label_nombre_brebis_mb");
@@ -558,7 +490,6 @@ create_window_gestion_troupeau_mb (void)
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_nombre_brebis_output_mb, "label_nombre_brebis_output_mb");
   GLADE_HOOKUP_OBJECT (window_gestion_troupeau_mb, label_nombre_mb, "label_nombre_mb");
 
-  gtk_widget_grab_focus (treeview_1_mb);
   return window_gestion_troupeau_mb;
 }
 
@@ -570,8 +501,7 @@ create_window_mb (void)
   GtkWidget *button_gestion_mb;
 
   window_mb = gtk_window_new (GTK_WINDOW_TOPLEVEL);
-  gtk_widget_set_size_request (window_mb, 350, 350);
-  gtk_window_set_title (GTK_WINDOW (window_mb), _("Accueil"));
+  gtk_window_set_title (GTK_WINDOW (window_mb), _("window1"));
 
   fixed9 = gtk_fixed_new ();
   gtk_widget_show (fixed9);
@@ -579,8 +509,8 @@ create_window_mb (void)
 
   button_gestion_mb = gtk_button_new_with_mnemonic (_("Gestion troupeaux"));
   gtk_widget_show (button_gestion_mb);
-  gtk_fixed_put (GTK_FIXED (fixed9), button_gestion_mb, 88, 104);
-  gtk_widget_set_size_request (button_gestion_mb, 224, 77);
+  gtk_fixed_put (GTK_FIXED (fixed9), button_gestion_mb, 112, 96);
+  gtk_widget_set_size_request (button_gestion_mb, 178, 77);
 
   g_signal_connect ((gpointer) button_gestion_mb, "clicked",
                     G_CALLBACK (on_button_gestion_mb_clicked),
@@ -591,7 +521,6 @@ create_window_mb (void)
   GLADE_HOOKUP_OBJECT (window_mb, fixed9, "fixed9");
   GLADE_HOOKUP_OBJECT (window_mb, button_gestion_mb, "button_gestion_mb");
 
-  gtk_widget_grab_default (fixed9);
   return window_mb;
 }
 
