@@ -448,7 +448,7 @@ on_ButtonEditWI_clicked                (GtkButton       *CheckCalendar,
         GtkTreeIter iter;
         GtkWidget* plant, *EditPlant, *CheckCal;
         gint* id;
-        plant=lookup_widget(CheckCalendar,"treeviewSummer");
+        plant=lookup_widget(CheckCalendar,"treeviewWinter");
         selection = gtk_tree_view_get_selection(GTK_TREE_VIEW(plant));
         if (gtk_tree_selection_get_selected(selection, &model, &iter))
         {
