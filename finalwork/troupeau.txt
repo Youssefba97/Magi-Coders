@@ -1,0 +1,8 @@
+4 Veau Male 1 9/11/2020
+2 Brebis Femelle 1 18/11/2020
+5 Brebis Femelle 1 18/11/2020
+7 Brebis Femelle 1 18/11/2020
+10 Veau Femelle 1 22/11/2020
+55 Veau Male 0 11/0/2022
+8 Veau Male 1 14/0/2022
+55555 Veau Male 1 20/0/2021

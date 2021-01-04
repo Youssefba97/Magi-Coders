@@ -1,0 +1,4 @@
+1 bjh ,nb 1/ 12/ 2020 1/ 1/ 2020 defectueux
+2 dd ff 1/ 1/ 2020 0/ 0/ 0 bonne_etat
+3 tttt rr 1/ 1/ 0 1/ 1/ 0 bonne_etat
+iiii iiii iiii 1/ 1/ 0 1/ 1/ 0 marche
